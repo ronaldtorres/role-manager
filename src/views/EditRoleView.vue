@@ -1,7 +1,14 @@
 <template>
   <v-container class="mt-6">
-    <h1>Editing {{ role.name }}</h1>
-    <RoleForm :edit="role" />
+    <div class="d-flex justify-space-between align-center mb-10">
+      <div>
+        <h1>Editing {{ role.name }}</h1>
+      </div>
+      <v-btn to="/" depressed>Cancel</v-btn>
+    </div>
+    <template v-if="role.id">
+      <RoleForm :edit="role" />
+    </template>
   </v-container>
 </template>
 
@@ -12,9 +19,12 @@ export default {
   data: () => ({
     role: {},
   }),
-  mounted() {
+  beforeMount() {
     let id = this.$route.params.id;
     this.role = this.$store.getters["roles/getById"](Number(id));
+
+    // Avoid enter to edit directly
+    if (!this.role.editable) this.$router.push("/");
   },
 };
 </script>

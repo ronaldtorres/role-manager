@@ -29,6 +29,10 @@ export default {
         state.roles.filter((r) => r.id !== Number(id))
       );
     },
+    updateRole({ state, commit }, [id, value]) {
+      let updated = state.roles.map((r) => (r.id == id ? value : r));
+      commit("SET_ROLES", updated);
+    },
   },
   getters: {
     roles: ({ filteredRoles, roles }) =>
