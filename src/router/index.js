@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import RoleMangementView from "../views/RoleMangementView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "RoleMangementView",
+    component: RoleMangementView,
   },
   {
     path: "/edit/:id",
@@ -17,7 +17,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/EditRoleView.vue"),
+      import(/* webpackChunkName: "edit" */ "../views/EditRoleView.vue"),
   },
 ];
 
