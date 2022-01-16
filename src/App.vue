@@ -11,9 +11,8 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  created() {
+    this.$store.dispatch("roles/init");
+  },
 };
 </script>

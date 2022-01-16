@@ -1,6 +1,17 @@
 <template>
   <v-card>
-    <v-card-title class="px-6 pb-0 pt-8">
+    <div class="pa-6" style="postion: relative">
+      <v-chip
+        v-if="!data.active"
+        text-color="white"
+        color="red"
+        label
+        style="position: absolute; right: 1.6rem"
+      >
+        INACTIVE
+      </v-chip>
+    </div>
+    <v-card-title class="px-6 pb-0">
       <p class="headline">{{ data.name }}</p>
     </v-card-title>
     <v-card-subtitle class="px-6">
@@ -11,20 +22,7 @@
         {{ data.description }}
       </p>
 
-      <div>
-        <template v-for="(user, i) of data.users">
-          <v-avatar v-if="i <= 5" class="mr-1" size="32" :key="user.id">
-            <img
-              :src="user.photo_url"
-              :alt="user.first_name + ' ' + user.last_name"
-              :title="user.first_name + ' ' + user.last_name"
-            />
-          </v-avatar>
-        </template>
-        <v-avatar v-if="data.users.length > 6" color="grey lighten-1" size="32">
-          <span class="white--text body-1">+{{ data.users.length - 6 }}</span>
-        </v-avatar>
-      </div>
+      <AvatarsGroup :avatars="data.users" :limit="6" />
     </v-card-text>
 
     <v-divider></v-divider>
@@ -36,8 +34,10 @@
       <v-spacer></v-spacer>
 
       <template v-if="data.editable">
-        <v-btn text>Edit</v-btn>
-        <v-btn color="red lighten-2" text> Delete </v-btn>
+        <v-btn :to="'/edit/' + data.id" text>Edit</v-btn>
+        <v-btn color="red lighten-2" text @click="deleteRole(data.id)">
+          Delete
+        </v-btn>
       </template>
       <template v-else>
         <v-icon>mdi-lock</v-icon>
@@ -47,11 +47,19 @@
 </template>
 
 <script>
+import AvatarsGroup from "./AvatarsGroup.vue";
 export default {
+  components: { AvatarsGroup },
   props: {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    deleteRole(id) {
+      this.$destroy();
+      this.$store.dispatch("roles/deleteRole", id);
     },
   },
 };

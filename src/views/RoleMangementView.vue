@@ -29,10 +29,6 @@ export default {
     Filters,
     RoleCard,
   },
-
-  mounted() {
-    this.$store.dispatch("roles/init");
-  },
   computed: {
     ...mapGetters("roles", {
       roles: "roles",
