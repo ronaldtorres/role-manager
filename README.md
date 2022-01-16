@@ -1,5 +1,6 @@
-# role-manager
+# Role Manager
 
+Made with Vue, Vuex, VueRouter and Vuetify.
 ## Project setup
 ```
 npm install
@@ -9,16 +10,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
