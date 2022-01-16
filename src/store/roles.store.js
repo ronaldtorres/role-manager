@@ -27,12 +27,13 @@ export default {
     deleteRole({ commit, state }, id) {
       let roles = state.roles.filter((r) => r.id !== Number(id));
       commit("SET_ROLES", roles);
-      commit("SET_FILTERED_ROLES", roles);
+      commit("SET_FILTERED_ROLES", undefined);
     },
 
     updateRole({ state, commit }, [id, value]) {
       let updated = state.roles.map((r) => (r.id == id ? value : r));
       commit("SET_ROLES", updated);
+      commit("SET_FILTERED_ROLES", undefined)
     },
 
     addRole({ state, commit }, value) {
