@@ -17,6 +17,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "edit" */ "../views/EditRoleView.vue"),
   },
+  {
+    path: "/create",
+    name: "CreateRoleView",
+    // route level code-splitting
+    component: () =>
+      import(/* webpackChunkName: "edit" */ "../views/CreateRoleView.vue"),
+  },
 ];
 
 const router = new VueRouter({

@@ -10,6 +10,7 @@ export default {
     SET_ROLES(state, value) {
       state.roles = value;
     },
+
     SET_FILTERED_ROLES(state, value) {
       state.filteredRoles = value;
     },
@@ -24,14 +25,28 @@ export default {
     },
 
     deleteRole({ commit, state }, id) {
-      commit(
-        "SET_ROLES",
-        state.roles.filter((r) => r.id !== Number(id))
-      );
+      let roles = state.roles.filter((r) => r.id !== Number(id));
+      commit("SET_ROLES", roles);
+      commit("SET_FILTERED_ROLES", roles);
     },
+
     updateRole({ state, commit }, [id, value]) {
       let updated = state.roles.map((r) => (r.id == id ? value : r));
       commit("SET_ROLES", updated);
+    },
+
+    addRole({ state, commit }, value) {
+      value = {
+        ...value,
+        id: state.roles.length + 1,
+        created_on: new Date(),
+        modified_on: new Date(),
+        users: [],
+      };
+
+      state.roles.push(value);
+
+      commit("SET_ROLES", state.roles);
     },
   },
   getters: {

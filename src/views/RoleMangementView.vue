@@ -7,7 +7,7 @@
         <Filters />
       </v-col>
       <v-col cols="12" md="2" class="d-flex align-center justify-end">
-        <v-btn color="cyan" dark>CREATE NEW ROLE</v-btn>
+        <v-btn color="cyan" dark to="/create">CREATE NEW ROLE</v-btn>
       </v-col>
     </v-row>
     <v-row v-if="roles">
